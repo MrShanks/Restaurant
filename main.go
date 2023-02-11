@@ -2,9 +2,11 @@ package main
 
 import (
 	"fmt"
+	"io"
+	"os"
 
 	"github.com/MrShanks/Restaurant/internal/order"
-	"github.com/MrShanks/Restaurant/internal/table"
+	"github.com/MrShanks/Restaurant/internal/restaurant"
 	"github.com/MrShanks/Restaurant/internal/waiter"
 )
 
@@ -40,10 +42,25 @@ func createMenu() order.Menu {
 	return menu
 }
 
+func Hello(out io.Writer) {
+	fmt.Fprint(out, "Welcome to our restaurant\n")
+}
+
 func main() {
+	Hello(os.Stdout)
+
+	morbido := restaurant.NewRestaurant("morbido")
+
+	morbido.AddTable(10)
+	morbido.AddTable(10)
+	morbido.AddTable(8)
+	morbido.AddTable(8)
+	morbido.AddTable(8)
+	morbido.AddTable(4)
+	morbido.AddTable(2)
+	morbido.AddTable(2)
+
 	simone := waiter.NewWaiter("Simone")
-	table1 := table.NewTable(10)
-	table2 := table.NewTable(8)
 	menu := createMenu()
 
 	itemsTable1 := []order.Item{
@@ -68,11 +85,15 @@ func main() {
 		menu.GetItem(12),
 	}
 
-	order1 := simone.NewOrder(table1, itemsTable1)
-	order2 := simone.NewOrder(table2, itemsTable2)
+	if err := morbido.Tables[0].ReserveTable(10, "simone"); err != nil {
+		fmt.Println(err)
+	}
+
+	order1 := simone.NewOrder(morbido.Tables[0], itemsTable1)
+	order2 := simone.NewOrder(morbido.Tables[1], itemsTable2)
 	order1.PrettyPrint()
 	order2.PrettyPrint()
-	fmt.Println()
-	fmt.Println()
 	menu.PrettyPrint()
+	fmt.Println(morbido.Tables[0])
+
 }

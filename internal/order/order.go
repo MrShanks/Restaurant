@@ -60,12 +60,12 @@ func (o *Order) PrettyPrint() {
 }
 
 func (m *Menu) PrettyPrint() {
-	fmt.Println("*---------------------------------*")
-	fmt.Println("|              MENU               |")
-	fmt.Println("*---------------------------------*")
+	fmt.Println("*--------------------------------------*")
+	fmt.Println("|                 MENU                 |")
+	fmt.Println("*--------------------------------------*")
 	for i := 1; i <= len(m.Items); i++ {
 		item := m.GetItem(i)
-		fmt.Printf("| %-3v  %-20v   %-4v|\n", item.ID, item.Name, item.Price)
+		fmt.Printf("| %-3v| %-20v   %-4v %v |\n", item.ID, item.Name, item.Price, "CHF")
 	}
-	fmt.Println("*---------------------------------*")
+	fmt.Println("*--------------------------------------*")
 }
