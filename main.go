@@ -94,6 +94,4 @@ func main() {
 	order1.PrettyPrint()
 	order2.PrettyPrint()
 	menu.PrettyPrint()
-	fmt.Println(morbido.Tables[0])
-
 }
