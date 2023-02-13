@@ -1,11 +1,15 @@
 package order
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/MrShanks/Restaurant/internal/item"
+)
 
 type Order struct {
 	ID    int
 	Table int
-	Items []Item
+	Items []item.Item
 	Notes string
 	Bill  float64
 }

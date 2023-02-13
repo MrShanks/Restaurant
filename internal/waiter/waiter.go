@@ -1,6 +1,7 @@
 package waiter
 
 import (
+	"github.com/MrShanks/Restaurant/internal/item"
 	"github.com/MrShanks/Restaurant/internal/order"
 	"github.com/MrShanks/Restaurant/internal/restaurant"
 )
@@ -19,7 +20,7 @@ func NewWaiter(name string) *Waiter {
 	}
 }
 
-func (w *Waiter) NewOrder(table restaurant.Table, items []order.Item) order.Order {
+func (w *Waiter) NewOrder(table restaurant.Table, items []item.Item) order.Order {
 	orderID++
 	bill := 0.0
 	for _, item := range items {
